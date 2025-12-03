@@ -1,0 +1,10 @@
+{
+  "exercises-1": [
+    {"user": "Alice", "score": 98},
+    {"user": "Bob", "score": 85}
+  ],
+  "exercise-2": [
+    {"user": "Charlie", "score": 100},
+    {"user": "Alice", "score": 92}
+  ]
+}

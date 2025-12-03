@@ -1,0 +1,44 @@
+{{ define "main" }}
+    <article class="prose lg:prose-xl max-w-none mb-12">
+        <h1>{{ .Title }}</h1>
+        <div class="content">
+            {{ .Content }}
+        </div>
+    </article>
+
+    <hr class="my-8 border-gray-200">
+
+    <section class="leaderboard">
+        <h2 class="text-2xl font-bold mb-4 text-gray-800">Leaderboard</h2>
+
+        {{ $folderName := path.Base (path.Dir .File.Path) }}
+        {{ $data := index .Site.Data.leaderboard $folderName }}
+
+        {{ if $data }}
+            <div class="overflow-hidden border rounded-lg shadow-sm">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-100 border-b">
+                        <tr>
+                            <th class="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rank</th>
+                            <th class="py-3 px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student</th>
+                            <th class="py-3 px-6 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        {{ range $index, $entry := sort $data "score" "desc" }}
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-4 px-6 text-gray-500 font-mono">{{ add $index 1 }}</td>
+                            <td class="py-4 px-6 font-medium text-gray-900">{{ $entry.user }}</td>
+                            <td class="py-4 px-6 text-right text-blue-600 font-bold">{{ $entry.score }}</td>
+                        </tr>
+                        {{ end }}
+                    </tbody>
+                </table>
+            </div>
+        {{ else }}
+            <p class="text-gray-500 italic bg-yellow-50 p-4 rounded border border-yellow-100">
+                No leaderboard data found for "{{ $folderName }}".
+            </p>
+        {{ end }}
+    </section>
+{{ end }}

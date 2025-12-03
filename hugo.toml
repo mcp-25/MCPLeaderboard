@@ -1,0 +1,6 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'MCP 2025' # This is the customizable website name
+
+[params]
+  teacher_name = "Prof. De Sensi" # The Teacher Name

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+    {{ $style := resources.Get "css/main.css" | css.PostCSS }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col">
+
+    {{ partial "navbar.html" . }}
+
+    <div class="flex flex-1 container mx-auto p-4 gap-6">
+        <aside class="w-1/4 hidden md:block border-r border-gray-200 pr-4">
+            {{ partial "sidebar.html" . }}
+        </aside>
+
+        <main class="w-full md:w-3/4 bg-white p-6 shadow-sm rounded-lg">
+            {{ block "main" . }}{{ end }}
+        </main>
+    </div>
+
+</body>
+</html>
