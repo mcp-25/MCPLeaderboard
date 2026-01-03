@@ -4,12 +4,21 @@
 
 <ul class="space-y-2">
     {{ range where .Site.RegularPages "Section" "exercises" }}
-        <li>
-            {{ $active := eq .Permalink $.Permalink }}
-            <a href="{{ .Permalink }}" 
-               class="block px-3 py-2 rounded transition-colors {{ if $active }}bg-blue-100 text-blue-700 font-medium{{ else }}hover:bg-gray-100 text-gray-700{{ end }}">
-                {{ .Title }}
-            </a>
-        </li>
+    <li>
+        {{ $active := eq .Permalink $.Permalink }}
+        <a href="{{ .Permalink }}"
+            class="block px-3 py-2 rounded transition-colors {{ if $active }}bg-blue-100 text-blue-700 font-medium{{ else }}hover:bg-gray-100 text-gray-700{{ end }}">
+            {{ if .Params.technology }}
+            [{{ .Params.technology | strings.ToUpper }}] {{ .Title }}
+            {{ else }}
+            {{ .Title }}
+            {{ end }}
+        </a>
+    </li>
     {{ end }}
+    <li>
+        <a href="/exercises/"
+            class="block px-3 py-2 rounded transition-colors hover:bg-gray-100 text-gray-700">
+            View All
+        </a>
 </ul>

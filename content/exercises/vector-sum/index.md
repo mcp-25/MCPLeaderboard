@@ -1,7 +1,8 @@
 ---
-title: "[CUDA] Vector Sum"
+title: "Vector Sum"
 date: 2023-10-27T10:00:00+00:00
 draft: false
+technology: "cuda"
 ---
 
 # Laplace Relaxation Exercise
